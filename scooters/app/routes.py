@@ -1,6 +1,7 @@
 from aiohttp import web
 
 from app.context import AppContext
+from app.api.v1 import get_scooters, get_scooters_admin
 
 
 def wrap_handler(handler, context):
@@ -14,14 +15,14 @@ def setup_routes(app: web.Application, ctx: AppContext) -> None:
     app.router.add_get(
         '/v1/scooters',
         wrap_handler(
-            # TODO
+            get_scooters.handle,
             ctx,
         ),
     )
     app.router.add_get(
         '/v1/admin/scooters',
         wrap_handler(
-            # TODO
+            get_scooters_admin.handle,
             ctx,
         ),
     )
